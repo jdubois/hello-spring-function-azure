@@ -248,7 +248,8 @@ In an empty folder, create a new `pom.xml` file with the following content :
 </project>
 ```
 
-Please note that this file uses Maven dependencies from both Spring Boot and Spring Cloud Function, and that it configures the Spring Boot Maven plugin in order to be able to run the application locally.
+Please note that this file uses Maven dependencies from both Spring Boot and Spring Cloud Function, and that it configures
+the Spring Boot and Azure Functions Maven plugins.
 
 A few properties need to be customized for your application:
 
@@ -284,7 +285,10 @@ Create a `src/main/azure` folder and add the following Azure Functions configura
 
 ## Create domain objects
 
-Azure Functions can receive and send objects in JSON format. We are now going to create our `User` and `Greeting` objects, which represent our domain model. You can of course create more complex objects, with more properties, if you want to customize this quick start and make it more interesting for you.
+Azure Functions can receive and send objects in JSON format.
+We are now going to create our `User` and `Greeting` objects, which represent our domain model.
+You can of course create more complex objects, with more properties, if you want to customize this quick start and make 
+it more interesting for you.
 
 Create a `src/main/java/com/example/model` folder and add the following two files :
 
@@ -342,7 +346,8 @@ public class Greeting {
 
 ## Create the Spring Boot application
 
-This application will manage all business logic, and benefits from the full Spring Boot ecosystem. This gives therefore two main benefits over a standard Azure Functions :
+This application will manage all business logic, and will have access to the full Spring Boot ecosystem.
+This gives you therefore two main benefits over a standard Azure Function :
 
 - It doesn't rely on the Azure Functions APIs, so it can easily be ported to other systems. For example, it could be re-used in a normal Spring Boot application.
 - It can use all the `@Enable` annotations from Spring Boot to easily add powerful new features.
@@ -383,7 +388,7 @@ public class HelloFunction {
 
 ## Create the Azure Function
 
-In order to benefit from the full Azure Functions API, we are now going to code a specific class: it is an Azure Function that will delegate its execution to the Spring Cloud Function we have created in the previous step.
+In order to benefit from the full Azure Functions API, we are now going to code a specific class : it is an Azure Function that will delegate its execution to the Spring Cloud Function we have created in the previous step.
 
 In the `src/main/java/com/example` folder, create the following Azure Function :
 
@@ -419,7 +424,7 @@ public class HelloHandler extends AzureSpringBootRequestHandler<User, Greeting> 
 
 This Java class is an Azure Function, with the following interesting features :
 
-- It extends `AzureSpringBootRequestHandler`, which does the link between Azure Functions and Spring Cloud Function. This is what provides the `handleRequest()` method that is used later.
+- It extends `AzureSpringBootRequestHandler`, which does the link between Azure Functions and Spring Cloud Function. This is what provides the `handleRequest()` method that is used in its `execute()` method.
 - The name of the function, as defined by the `@FunctionName("hello")` annotation, is the same as the Spring bean we have configured in the previous step, `hello`.
 - It is a real Azure Function, so you can use the full Azure Functions API here.
 
