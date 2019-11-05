@@ -110,6 +110,10 @@
                             <name>MAIN_CLASS</name>
                             <value>com.example.HelloFunction</value>
                         </property>
+                        <property>
+                            <name>FUNCTIONS_EXTENSION_VERSION</name>
+                            <value>~2</value>
+                        </property>
                     </appSettings>
                 </configuration>
                 <executions>
